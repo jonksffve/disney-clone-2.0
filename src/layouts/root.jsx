@@ -1,10 +1,14 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
+import MainNavigation from '../components/UI/Navbar';
 
 const RootLayout = () => {
 	return (
 		<Fragment>
-			<Outlet />
+			<MainNavigation />
+			<main>
+				<Outlet />
+			</main>
 		</Fragment>
 	);
 };
