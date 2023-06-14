@@ -1,0 +1,8 @@
+.carousel {
+	margin: 20px;
+	width: calc(100% - 40px);
+}
+
+.carousel img {
+	width: 100%;
+}
