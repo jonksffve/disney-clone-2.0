@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: import.meta.env.VITE_API_KEY,
-	authDomain: import.meta.env.VITE_API_DOMAIN,
-	projectId: import.meta.env.VITE_API_PROJECTID,
-	storageBucket: import.meta.env.VITE_API_STORAGE,
-	messagingSenderId: import.meta.env.VITE_API_MESSAGING,
-	appId: import.meta.env.VITE_API_APPID,
+	apiKey: 'AIzaSyDpg3ssxqr5zk3UK_fjJX8no3dZao-dUnk',
+	authDomain: 'disney-clone-58485.firebaseapp.com',
+	projectId: 'disney-clone-58485',
+	storageBucket: 'disney-clone-58485.appspot.com',
+	messagingSenderId: '787466964223',
+	appId: '1:787466964223:web:ae3948004969030b99d0ca',
 };
 
 // Initialize Firebase APP

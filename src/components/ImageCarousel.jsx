@@ -1,4 +1,4 @@
-import classes from '../components/modules/home.module.css';
+import classes from './modules/home.module.css';
 import { Carousel } from 'antd';
 import imageOne from '../assets/images/slider-badag.jpg';
 import imageTwo from '../assets/images/slider-badging.jpg';
