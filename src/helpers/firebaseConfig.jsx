@@ -1,20 +1,25 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-	apiKey: 'AIzaSyAO7gGaoHW__X_a3E5Lbr34Vo3WrMNkAoA',
-	authDomain: 'disneyplus-clone-fd7f2.firebaseapp.com',
-	databaseURL: 'https://disneyplus-clone-fd7f2-default-rtdb.firebaseio.com',
-	projectId: 'disneyplus-clone-fd7f2',
-	storageBucket: 'disneyplus-clone-fd7f2.appspot.com',
-	messagingSenderId: '132728618748',
-	appId: '1:132728618748:web:be2f708d8b5b20f613a179',
-	measurementId: 'G-4JH24LT5HP',
+	apiKey: import.meta.env.API_KEY,
+	authDomain: import.meta.env.API_DOMAIN,
+	projectId: import.meta.env.API_PROJECTID,
+	storageBucket: import.meta.env.API_STORAGE,
+	messagingSenderId: import.meta.env.API_MESSAGING,
+	appId: import.meta.env.API_APPID,
 };
 
-// Initialize Firebase
+// Initialize Firebase APP
 const app = initializeApp(firebaseConfig);
+// Initialize Auth helpers
+const auth = getAuth(app);
+// This is the database connection
+const firestore = getFirestore(app);
+
+export { app, auth, firestore };
