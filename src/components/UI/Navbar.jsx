@@ -3,28 +3,70 @@ import MainLogo from '../../assets/images/logo.svg';
 import { AiFillStar, AiFillHome, AiOutlinePlus } from 'react-icons/ai';
 import { BiSearch, BiRadio } from 'react-icons/bi';
 import { RiMovie2Line } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Fragment } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Fragment, useEffect } from 'react';
+import { signInGoogle, logoutUser } from '../../api/authAPI';
+import { userActions } from '../../store/user-slice';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../helpers/firebaseConfig';
+import { ROUTE_HOME, ROUTE_INDEX } from '../../helpers/routes';
 
 const Navbar = () => {
 	const user = useSelector((state) => state.user);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (curUser) => {
+			if (curUser) {
+				const { displayName: name, email, photoURL: photo } = curUser;
+				dispatch(
+					userActions.loginUserState({
+						name,
+						email,
+						photo,
+					})
+				);
+				navigate(ROUTE_HOME);
+			} else {
+				navigate(ROUTE_INDEX);
+			}
+		});
+	}, [dispatch, navigate]);
+
+	const loginHandler = async () => {
+		const response = await signInGoogle();
+		const { displayName: name, email, photoURL: photo } = response.user;
+		dispatch(
+			userActions.loginUserState({
+				name,
+				email,
+				photo,
+			})
+		);
+	};
+
+	const logoutHandler = async () => {
+		await logoutUser();
+		dispatch(userActions.logoutUserState());
+	};
 
 	return (
 		<nav className={classes.navbar}>
 			<div>
-				<a href='#'>
+				<Link to={ROUTE_HOME}>
 					<img
 						src={MainLogo}
 						alt=''
 					/>
-				</a>
+				</Link>
 			</div>
 
 			{!user.loggedIn && (
 				<Fragment>
 					<div>
-						<button>Login</button>
+						<button onClick={loginHandler}>Login</button>
 					</div>
 				</Fragment>
 			)}
@@ -74,10 +116,10 @@ const Navbar = () => {
 
 					<div className={classes.signout}>
 						<img
-							src=''
-							alt=''
+							src={user.photo}
+							alt='User profile picture'
 						/>
-						<span>Sign out</span>
+						<span onClick={logoutHandler}>Sign out</span>
 					</div>
 				</Fragment>
 			)}
