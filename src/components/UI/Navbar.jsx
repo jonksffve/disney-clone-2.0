@@ -76,7 +76,7 @@ const Navbar = () => {
 					<div>
 						<ul className={classes['link-container']}>
 							<li className={classes['link-item']}>
-								<Link to={''}>
+								<Link to={ROUTE_HOME}>
 									<AiFillHome />
 									<span>home</span>
 								</Link>

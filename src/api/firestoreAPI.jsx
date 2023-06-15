@@ -1,5 +1,5 @@
 import { firestore } from '../helpers/firebaseConfig';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, getDoc, doc } from 'firebase/firestore';
 import { movieData } from '../helpers/initialDBdata';
 import { toast } from 'react-toastify';
 import { toastOptions } from '../helpers/toastConfig';
@@ -47,6 +47,22 @@ export const getMovies = async () => {
 	} catch (error) {
 		toast.error(
 			'Something happened, trying to fetch movies.',
+			toastOptions
+		);
+	}
+};
+
+export const getMovie = async (id) => {
+	try {
+		const docRef = doc(dbRef, id);
+		const response = await getDoc(docRef);
+		if (response.exists()) {
+			return response.data();
+		}
+		return new Error('Document does not exist!');
+	} catch (error) {
+		toast.error(
+			'Something happened, trying to fetch that movie.',
 			toastOptions
 		);
 	}
