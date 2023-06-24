@@ -1,6 +1,5 @@
 import { firestore } from '../helpers/firebaseConfig';
-import { collection, getDocs, addDoc, getDoc, doc } from 'firebase/firestore';
-import { movieData } from '../helpers/initialDBdata';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { toastOptions } from '../helpers/toastConfig';
 
@@ -34,6 +33,11 @@ const dbRef = collection(firestore, 'movies');
 // 	}
 // };
 
+/**
+ * Retrieves all movies from firebase
+ *
+ * @returns {arrayData} list of movies
+ */
 export const getMovies = async () => {
 	try {
 		const response = await getDocs(dbRef);
@@ -52,6 +56,13 @@ export const getMovies = async () => {
 	}
 };
 
+/**
+ * Retrieves a single movie based of an id
+ *
+ *
+ * @param {string} id, unique identifier for the movie
+ * @returns {response.data()} object containing movie detail data
+ */
 export const getMovie = async (id) => {
 	try {
 		const docRef = doc(dbRef, id);

@@ -1,3 +1,7 @@
+/**
+ * Object used to populate firebase firestore
+ *
+ */
 export const movieData = [
 	{
 		backgroundImg:

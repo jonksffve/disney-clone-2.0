@@ -3,6 +3,11 @@ import { auth } from '../helpers/firebaseConfig';
 import { toast } from 'react-toastify';
 import { toastOptions } from '../helpers/toastConfig';
 
+/**
+ * Lets you authenticate an user using google account
+ *
+ * @returns {response} user authentication information
+ */
 export const signInGoogle = async () => {
 	try {
 		const provider = new GoogleAuthProvider();
@@ -14,6 +19,10 @@ export const signInGoogle = async () => {
 	}
 };
 
+/**
+ * Lets you log an user out
+ *
+ */
 export const logoutUser = async () => {
 	try {
 		await signOut(auth);

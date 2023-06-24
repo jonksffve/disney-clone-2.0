@@ -1,3 +1,7 @@
+/**
+ * Object used to configurate react-toastify messages
+ *
+ */
 export const toastOptions = {
 	position: 'bottom-right',
 	autoClose: 1500,
